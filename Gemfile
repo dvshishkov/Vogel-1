@@ -21,8 +21,8 @@ gem 'jquery-turbolinks'
 
 gem 'haml-rails'
 
-gem 'bourbon'
-gem 'neat'
+gem 'foundation-rails'
+
 
 gem 'twitter'
 
