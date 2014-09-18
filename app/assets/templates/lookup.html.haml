@@ -1,0 +1,27 @@
+%p
+
+
+%div.row
+  %div.small-10.columns
+    %input{type: 'text', :'ng-model' =>  'username'}
+  %div.small-2.columns
+    %button{class: 'fu', :'ng-click' => 'lookupUser()'} Search
+
+#lookupContent{:'ng-show' => 'userLoaded'}
+  %div.row
+    %div.small-4.columns
+      {{ user.name }}
+    %div.small-4.columns
+      ( {{ username}} )
+    %div.small-2.columns
+      [{{user.tweet_count}}]
+  %div.row
+    %table
+      %thead
+        %tr
+          %th Tweet
+      %tbody
+        %tr{:'ng-repeat' => 'tweet in user.tweets'}
+          %td {{ tweet.text }}
+  %div.row{:'ng-show' => 'hasMoreTweets'}
+    %a{:'ng-click' => 'loadMore()'} Load More

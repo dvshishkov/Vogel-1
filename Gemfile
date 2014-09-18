@@ -22,6 +22,10 @@ gem 'foundation-rails', '~> 5.3.0'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'haml-rails'
+
+gem 'active_model_serializers'
+
+
 # gem 'foundation-rails'
 gem 'twitter', '~> 5.1'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks

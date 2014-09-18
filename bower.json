@@ -1,0 +1,23 @@
+{
+  "name": "Vogel",
+  "version": "0.0.0",
+  "authors": [
+    "Martin Lang <martin@mercator.io>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/bower",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "AngularJS-Toaster": "~0.4.7",
+    "angular": "~1.2.25",
+    "angular-ui-router": "~0.2.11",
+    "angular-loading-bar": "~0.5.2"
+  }
+}

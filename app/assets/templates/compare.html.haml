@@ -1,0 +1,9 @@
+%div.row
+  %div.small-4.columns
+    %input{type: 'text', :'ng-model' => 'user1', placeholder: 'User 1'}
+  %div.small-4.columns
+    %input{type: 'text', :'ng-model' => 'user2', placeholder: 'User 2'}
+  %div.small-4.columns
+    %button{:'ng-click' => 'compareUsers(user1, user2)'} Compare
+
+%div.row{:'ng-show' => 'loaded')

@@ -1,0 +1,15 @@
+%nav.top-bar{data: {topbar: 'true'}, :'role' => 'navigation'}
+  %ul.title-area
+    %li
+      %h1 Vogel
+  %section.top-bar-section
+    %ul.left
+      %li
+        %a{:'ui-sref' => 'twitterLookup'} User Lookup
+      %li
+        %a{:'ui-sref' => 'twitterCompare'} User Compare
+
+
+%toaster-container
+
+%div{:'ui-view' => ''}
