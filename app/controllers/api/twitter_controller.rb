@@ -1,32 +1,37 @@
 class Api::TwitterController < Api::BaseController
+
   def show
     check_required_params(:user_name)
-    @twitter_user = TwitterUser.new(params[:user_name])
-    unless @twitter_user.is_valid?
-      render nothing: true, status: 404
+    twitter = TwitterService.new
+    if twitter.user_exists? params[:user_name]
+      @twitter_user = OpenStruct.new(user: twitter.get_info(params[:user_name]), tweets: twitter.get_tweets(params[:user_name]))
+    else
+      fail(nil, 404)
     end
-    @twitter_user.load
-    # p @twitter_user.user_info.location
   end
 
   def tweets
     check_required_params(:user_name)
-    @tweets = []
-    twitter_user = TwitterUser.new(params[:user_name])
-    @tweets = twitter_user.get_tweets({count: params[:count], max_id: params[:max_id]})
+    twitter = TwitterService.new
+    if twitter.user_exists? params[:user_name]
+      @tweets = twitter.get_tweets(params[:user_name], {count: params[:count], max_id: params[:max_id]})
+    else
+      fail(nil, 404)
+    end
   end
 
   def compare
     check_required_params(:user1, :user2)
-    twitter_user1, twitter_user2 = [TwitterUser.new(params[:user1]), witterUser.new(params[:user2])]
-    unless valid1 = twitter_user1.is_valid? || valid2 = twitter_user2.is_valid?
-      render json: {user1: valid1, user2: valid2}, status: 400
-    end
-    twitter_user1.load
-    twitter_user2.load
-    @overlapping_followers = twitter_user1.followers & twitter_user2.followers
-  end
+    twitter = TwitterService.new
+    if user_exist1 = twitter.user_exists?(params[:user1]) && user_exist2 = twitter.user_exists?(params[:user2])
+      # @overlapping_followers = twitter.compare_followers(params[:user1], params[:user2])
 
+      # NOTE: DUE TO TWITTER RATE LIMIT, THIS IS HERE FOR EXAMPLE PURPOSES
+      @overlapping_followers = [OpenStruct.new(screen_name: 'test1'), OpenStruct.new(screen_name: 'test2')]
+    else
+      render json: {error: {user1: user_exist1, user2: user_exist2 || false}}, status: 400
+    end
+  end
 
   private
 
@@ -37,6 +42,13 @@ class Api::TwitterController < Api::BaseController
       render json: missing_params, status: 400
     end
   end
+
+  def fail(message = nil, status)
+    render json: message || {}, status: status
+  end
+
+
+
 
 
 

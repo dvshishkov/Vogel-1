@@ -22,5 +22,6 @@ module Vogel
 
     config.autoload_paths << Rails.root.join('lib')
     config.assets.paths << Rails.root.join('vendor', 'assets', 'bower')
+    config.autoload_paths << Rails.root.join('app', 'servjces')
   end
 end

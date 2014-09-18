@@ -6,4 +6,8 @@
   %div.small-4.columns
     %button{:'ng-click' => 'compareUsers(user1, user2)'} Compare
 
-%div.row{:'ng-show' => 'loaded')
+%div.row{:'ng-show' => 'loaded'}
+  %div.small-4.small-centered.columns
+  %ul.no-bullet
+    %li{:'ng-repeat' => 'follower in commonFollowers'}
+      {{ follower.name }}
